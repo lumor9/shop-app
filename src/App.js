@@ -20,7 +20,7 @@ function App() {
             <li className="nav-link-container"><span className='nav-link'>About us</span></li>
           </ul>
           <div className="navbar-text d-flex gap-4 justify-content-end">
-            <a href="#"><img src='/assets/cart.png'/></a>
+            <a href="#"><img src={cart.length === 0 ? '/assets/cart.png' : '/assets/cartActive.png'}/></a>
             <a href="#"><img src='/assets/user.png'/></a>
           </div>
         </div>
@@ -30,9 +30,9 @@ function App() {
 
         <div className="row justify-content-center">
           <div className="col-6">
-            <div className="d-flex flex-column p-5 text-center m-3">
+            <div className="d-flex flex-column py-5 text-center my-3">
               <h1>Products</h1>
-              <p className="text-muted">We display products based on the latest products we have, if you want
+              <p className="gray">We display products based on the latest products we have, if you want
               to see our old products please enter the name of the item</p>
             </div>
           </div>
@@ -42,7 +42,7 @@ function App() {
           <div className="col-12">
             <form className="d-flex gap-4">
               <input className="form-control form-control-lg rounded-1" id="search" type="search" placeholder="Search" aria-label="Search"/>
-              <button className="btn btn-primary px-4 rounded-1" type="submit">Search</button>
+              <button className="btn btn-primary px-4 py-2 rounded-1" type="submit">Search</button>
             </form>
           </div>
         </div>

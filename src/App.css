@@ -47,3 +47,7 @@ h3{
     color: var(--primary-color);
     font-weight: 700 !important;
 }
+
+.gray{
+    color: var(--gray-color);
+}

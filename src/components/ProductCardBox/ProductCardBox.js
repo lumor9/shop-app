@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 const ProductCardBox = ({products}) => {
 
     return (
-        <div className='row g-5'>
+        <div className='row g-5 align-items-stretch'>
             {products.map(product => <ProductCard product={product} key={v4()}/>)}
         </div>
     )
