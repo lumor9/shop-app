@@ -4,7 +4,7 @@ const cart = (state = [], action) => {
             state = [...state, action.payload];
             return state;
         case 'DELETEFROMCART':
-            state = state.filter(obj => obj.id !== action.payload);
+            state = state.filter(obj => obj !== action.payload);
             return state;
         default:
             return state;

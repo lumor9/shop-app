@@ -1,13 +1,15 @@
-const addToCart = () => {
+const addToCart = (id) => {
     return {
         type:'ADDTOCART',
-        payload:'',
+        payload: id,
     }
 }
 
-const deleteFromCart = () => {
+const deleteFromCart = (id) => {
     return {
         type:'DELETEFROMCART',
-        payload:'',
+        payload: id,
     }
 }
+
+export { addToCart, deleteFromCart };
