@@ -1,7 +1,7 @@
-img{
-    object-fit: contain;
-}
-
 .card{
     height: 100%;
+}
+
+h5{
+    color: black; 
 }

@@ -7,6 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   --primary-color: rgb(66, 66, 190);
   --gray-color: rgb(141, 141, 141);
+  
+}
+
+html, body{
+  scrollbar-gutter: stable both-edges;
 }
 
 code {

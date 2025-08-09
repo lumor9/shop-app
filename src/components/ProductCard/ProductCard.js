@@ -1,11 +1,11 @@
 import './ProductCard.css'
 import { useDispatch} from 'react-redux';
 import { addToCart } from '../../actions';
-
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
   const {id, name: nameProduct, description, type, cost} = product;
-  const imgSrc = `./assets/${nameProduct.replaceAll(' ', '')}.png`;
+  const imgSrc = `/assets/${nameProduct.replaceAll(' ', '')}.png`;
   const dispatch = useDispatch();
   
   return (
@@ -17,7 +17,7 @@ const ProductCard = ({product}) => {
         <div className="card-body d-flex flex-column gap-2 justify-content-around">
           <div>
             <p className='gray mb-1'>{type}</p>
-            <h5>{nameProduct}</h5>
+            <Link to={`/Products/${nameProduct.replaceAll(' ', '_')}`}><h5>{nameProduct}</h5></Link>
             <p className='gray'>{description}</p>
           </div>
           
