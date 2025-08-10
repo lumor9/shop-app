@@ -13,7 +13,7 @@ export const ProductCardCart = ({product, count}) => {
     return (
         <div className="row card flex-row">
             <div className="col-lg-3 col-12 p-0">
-                <img src={imgSrc} alt={nameProduct}/>
+                <img className='product-cart' src={imgSrc} alt={nameProduct}/>
             </div>
 
             <div className="col-lg-5 col-12 ms-md-3 p-4 d-flex flex-column justify-content-between">

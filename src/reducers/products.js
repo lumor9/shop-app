@@ -150,7 +150,9 @@ const productsInit = [
     }
 ];
 
-const products = (state = productsInit) => {
+const types = [...new Set(productsInit.map(product => product.type))];
+
+const products = (state = {productsList: productsInit, types}) => {
     return state;
 };
 
