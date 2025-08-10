@@ -5,7 +5,7 @@ import App from './App';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store/store.js'
+import { store, persistor } from './store/store.js'
 
 import { Home } from './pages/Home/Home.js';
 import { AboutUs } from './pages/AboutUs/AboutUs.js';
@@ -14,6 +14,9 @@ import { Product } from './pages/Product/Product.js';
 import { Profile } from './pages/Profile/Profile.js';
 import { NotFound } from './pages/NotFound/NotFound.js';
 import { Cart } from './pages/Cart/Cart.js';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Toaster, toast } from 'sonner';
+
 
 const router = createBrowserRouter([
   {
@@ -48,7 +51,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router}/>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router}/>
+        <Toaster/>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

@@ -1,0 +1,13 @@
+img{
+    width: 100%;
+}
+
+a{
+    color: black;
+}
+
+.count {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}

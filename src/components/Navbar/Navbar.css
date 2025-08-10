@@ -38,3 +38,11 @@
 a {
     text-decoration: none;
 }
+
+.nav-link-container.active{
+    border-bottom: 1px solid var(--primary-color) !important;
+}
+
+.nav-link-container.active a{
+    color: var(--primary-color) !important;
+}

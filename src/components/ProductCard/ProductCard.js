@@ -2,6 +2,7 @@ import './ProductCard.css'
 import { useDispatch} from 'react-redux';
 import { addToCart } from '../../actions';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const ProductCard = ({product}) => {
   const {id, name: nameProduct, description, type, cost} = product;
@@ -23,7 +24,10 @@ const ProductCard = ({product}) => {
           
           <div className="d-flex flex-row justify-content-between align-items-center">
             <h5 style={{margin: 0}}>$ {cost}</h5>
-            <button className='btn btn-primary px-4 py-2 rounded-1' onClick={() => dispatch(addToCart(id))}>Add to Cart</button>
+            <button className='btn btn-primary px-4 py-2 rounded-1' onClick={() => {
+              dispatch(addToCart(id));
+              toast('Added to Cart');
+            }}>Add to Cart</button>
           </div>
         </div>
       </div>
