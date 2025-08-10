@@ -7,17 +7,27 @@ import { useLocation } from "react-router-dom";
 
 import ProductCardBox from '../../components/ProductCardBox/ProductCardBox.js';
 import { Navbar } from '../../components/Navbar/Navbar.js';
+import { PageButtons } from '../../components/PageButtons/PageButtons.js';
 
 function Home () {
     const {productsList, types} = useSelector(store => store.products);
     const { pathname } = useLocation();
+    
 
-    const [state, setState] = useState({search: '', type: ''});
+    const [state, setState] = useState({search: '', type: '', productsCurrent: [...productsList]});
     const handleInputChange = (e) => {
-        setState({...state, search: e.target.value});
+        setState({
+            ...state, 
+            search: e.target.value,
+            productsCurrent: (pathname.slice(1) === '' || pathname.slice(8) === '' ? productsList : productsList.filter(product => product.name.includes(pathname.slice(8)))).filter(obj => (state.type === '' || state.type === 'None') ? true : obj.type === state.type),
+        });
     };
     const handleTypeChange = (e) => {
-        setState({...state, tupe: e.target.value});
+        setState({
+            ...state, 
+            type: e.target.value,
+            productsCurrent: (pathname.slice(1) === '' || pathname.slice(8) === '' ? productsList : productsList.filter(product => product.name.includes(pathname.slice(8)))).filter(obj => (state.type === '' || state.type === 'None') ? true : obj.type === state.type),
+        });
     };
     return (
         <div className="Home">
@@ -46,10 +56,10 @@ function Home () {
                 </div>
                 <div className="row mt-4">
                 <div className="col-2">
-                    <select onChange={handleTypeChange} className='form-select form-select-lg' style={{width: '100%', height: '100%'}} name="Filter">
-                    <option value="Chair">Dog</option>
-                    <option value="Cupboard">Cat</option>
-                    <option value="hamster">Hamster</option>
+                    <select onChange={handleTypeChange} className='form-select form-select-lg' style={{width: '100%', height: '100%'}} name="Filter" defaultValue={''}>
+                        <option value="" disabled hidden>Filter</option>
+                        <option value="None">None</option>
+                        {types.map(type => <option value={type} key={type}>{type}</option>)}
                     </select>
                 </div>
                 </div>
@@ -57,11 +67,17 @@ function Home () {
                 <div className="row mt-5 mb-3">
                 <div className="col d-flex flex-row gap-4 justify-content-start align-items-center">
                     <h3 className='m-0'>Total products</h3>
-                    <h5 className='products-count m-0'>{productsList.length}</h5>
+                    <h5 className='products-count m-0'>{state.productsCurrent.length}</h5>
                 </div>
                 </div>
                 
-                <ProductCardBox products={pathname.slice(1) === '' || pathname.slice(8) === '' ? productsList : productsList.filter(product => product.name.includes(pathname.slice(8)))}/>
+                <ProductCardBox products={ state.productsCurrent.slice(0, 9) }/>
+            
+                <div className="row" style={state.productsCurrent.length > 6 ? {display: 'block'} : {display: 'none'}}>
+                    <div className="col-12 d-flex justify-content-center mb-5">
+                       <PageButtons count={state.productsCurrent.length / 6}/>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -27,7 +27,7 @@ export const Cart = () => {
                     <div className="col offset-md-1 mb-5 d-flex flex-column gap-5">
                         <div>
                             <h3>Общая сумма:</h3>
-                            <h3>$ {sumAll}</h3>
+                            <h3>$ {sumAll.toFixed(2)}</h3>
                         </div>
                         <button className='btn btn-primary btn-lg rounded-1 px-4 py-2'>Купить</button>
                     </div>
