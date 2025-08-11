@@ -12,4 +12,10 @@ const deleteFromCart = (id) => {
     }
 }
 
-export { addToCart, deleteFromCart };
+const clearCart = () => {
+    return {
+        type:'CLEARCART'
+    }
+}
+
+export { addToCart, deleteFromCart, clearCart };

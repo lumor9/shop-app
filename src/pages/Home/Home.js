@@ -1,9 +1,8 @@
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 
 import ProductCardBox from '../../components/ProductCardBox/ProductCardBox.js';
 import { Navbar } from '../../components/Navbar/Navbar.js';
@@ -11,24 +10,57 @@ import { PageButtons } from '../../components/PageButtons/PageButtons.js';
 
 function Home () {
     const {productsList, types} = useSelector(store => store.products);
-    const { pathname } = useLocation();
+    const params = useParams();
+    const navigate = useNavigate();
     
+    const [state, setState] = useState({
+        search: params.text || '',
+        type: '',
+        productsCurrent: [...productsList]
+    });
 
-    const [state, setState] = useState({search: '', type: '', productsCurrent: [...productsList]});
+    useEffect(() => {
+        filterProducts(params.text || '', state.type);
+    }, [productsList, params.text, state.type]);
+
+    const filterProducts = (searchText, filterType) => {
+        const filtered = productsList.filter(product => {
+            const matchesSearch = searchText 
+                ? product.name.toLowerCase().includes(searchText.toLowerCase())
+                : true;
+            
+            const matchesType = (filterType === '' || filterType === 'None') 
+                ? true 
+                : product.type === filterType;
+            
+            return matchesSearch && matchesType;
+        });
+
+        setState(prev => ({
+            ...prev,
+            productsCurrent: filtered,
+        }));
+    };
+
     const handleInputChange = (e) => {
-        setState({
-            ...state, 
-            search: e.target.value,
-            productsCurrent: (pathname.slice(1) === '' || pathname.slice(8) === '' ? productsList : productsList.filter(product => product.name.includes(pathname.slice(8)))).filter(obj => (state.type === '' || state.type === 'None') ? true : obj.type === state.type),
-        });
+        setState(prev => ({
+            ...prev,
+            search: e.target.value
+        }));
     };
+
     const handleTypeChange = (e) => {
-        setState({
-            ...state, 
-            type: e.target.value,
-            productsCurrent: (pathname.slice(1) === '' || pathname.slice(8) === '' ? productsList : productsList.filter(product => product.name.includes(pathname.slice(8)))).filter(obj => (state.type === '' || state.type === 'None') ? true : obj.type === state.type),
-        });
+        setState(prev => ({
+            ...prev,
+            type: e.target.value
+        }));
     };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/Search/1/${state.search}`);
+    };
+    
     return (
         <div className="Home">
 
@@ -48,9 +80,19 @@ function Home () {
                 
                 <div className="row">
                 <div className="col-12">
-                    <form className="d-flex gap-4">
-                    <input className="form-control form-control-lg rounded-1" onChange={handleInputChange} id="search" type="search" placeholder="Search" aria-label="Search"/>
-                    <Link to={`/Search/${state.search}`}><button className="btn btn-primary px-4 py-2 rounded-1">Search</button></Link>
+                    <form className="d-flex gap-4" onSubmit={handleSearchSubmit}>
+                        <input 
+                            value={state.search}
+                            onChange={handleInputChange}
+                            className="form-control form-control-lg rounded-1" 
+                            id="search" 
+                            type="search" 
+                            placeholder="Search" 
+                            aria-label="Search"
+                        />
+                        <button type="submit" className="btn btn-primary px-4 py-2 rounded-1">
+                            Search
+                        </button>
                     </form>
                 </div>
                 </div>
@@ -71,11 +113,11 @@ function Home () {
                 </div>
                 </div>
                 
-                <ProductCardBox products={ state.productsCurrent.slice(0, 9) }/>
+                <ProductCardBox products={ !params.pageNum ? state.productsCurrent.slice(0, 9) :  state.productsCurrent.slice( (Number(params.pageNum)*9)-9 , (Number(params.pageNum)*9))}/>
             
                 <div className="row" style={state.productsCurrent.length > 6 ? {display: 'block'} : {display: 'none'}}>
                     <div className="col-12 d-flex justify-content-center mb-5">
-                       <PageButtons count={state.productsCurrent.length / 6}/>
+                       <PageButtons count={ Math.ceil(state.productsCurrent.length * 1.0 / 6) }/>
                     </div>
                 </div>
             </div>

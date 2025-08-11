@@ -13,7 +13,6 @@ export const Navbar = () => {
                 <div className="navbar-brand-div"><Link className="navbar-brand" to='/'>Shop</Link></div>
                 <ul className="navbar-nav gap-4 align-items-center">
                     <li className={(pathname === '/') || (pathname === '/Products') ? "nav-link-container active" : "nav-link-container"} ><span className='nav-link'><Link className='nav-link' to='/'>Products</Link></span></li>
-                    <li className={(pathname === '/Categories') ? "nav-link-container active" : "nav-link-container"}><span className='nav-link'><Link className='nav-link' to='/Categories'>Categories</Link></span></li>
                     <li className={(pathname === '/AboutUs') ? "nav-link-container active" : "nav-link-container"}><span className='nav-link'><Link className='nav-link' to='/AboutUs'>About us</Link></span></li>
                 </ul>
                 <div className="navbar-text d-flex gap-4 justify-content-end">

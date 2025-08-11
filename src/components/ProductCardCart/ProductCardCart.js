@@ -11,9 +11,9 @@ export const ProductCardCart = ({product, count}) => {
     const dispatch = useDispatch();
 
     return (
-        <div className="row card flex-row">
-            <div className="col-lg-3 col-12 p-0">
-                <img className='product-cart' src={imgSrc} alt={nameProduct}/>
+        <div className="row card card-cart d-flex flex-row">
+            <div className="col-lg-3 col-12 p-0" >
+                <img className='product-cart' src={imgSrc} alt={nameProduct} />
             </div>
 
             <div className="col-lg-5 col-12 ms-md-3 p-4 d-flex flex-column justify-content-between">

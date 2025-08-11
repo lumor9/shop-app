@@ -11,3 +11,7 @@ a{
     font-weight: 700;
     color: var(--primary-color);
 }
+
+.card-cart{
+        overflow: hidden;
+    }

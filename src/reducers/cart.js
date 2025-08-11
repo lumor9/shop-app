@@ -14,6 +14,8 @@ const cart = (state = [], action) => {
             }
             const countDelete = productInStateDelete[0].count - 1;
             return state.map(obj => obj.id === action.payload ? {id: action.payload, count: countDelete} : obj);
+        case 'CLEARCART':
+            return [];
         default:
             return state;
     }
