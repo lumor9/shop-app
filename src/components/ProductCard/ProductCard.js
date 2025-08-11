@@ -4,7 +4,7 @@ import { addToCart } from '../../actions';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 
-const ProductCard = ({product}) => {
+export const ProductCard = ({product}) => {
   const {id, name: nameProduct, description, type, cost} = product;
   const imgSrc = `/assets/${nameProduct.replaceAll(' ', '')}.png`;
   const dispatch = useDispatch();
@@ -34,5 +34,3 @@ const ProductCard = ({product}) => {
     </div>  
   );
 }
-
-export default ProductCard;

@@ -8,13 +8,11 @@ import { store, persistor } from './store/store.js'
 
 import { Home } from './pages/Home/Home.js';
 import { AboutUs } from './pages/AboutUs/AboutUs.js';
-import { Categories } from './pages/Categories/Categories.js';
 import { Product } from './pages/Product/Product.js';
-import { Profile } from './pages/Profile/Profile.js';
 import { NotFound } from './pages/NotFound/NotFound.js';
 import { Cart } from './pages/Cart/Cart.js';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Toaster, toast } from 'sonner';
+import { Toaster} from 'sonner';
 
 
 const router = createBrowserRouter([
@@ -30,10 +28,6 @@ const router = createBrowserRouter([
   {
     path: '/Products/:productName',
     element: <Product/>,
-  },
-  {
-    path: '/Profile',
-    element: <Profile/>,
   },
   {
     path: '/Cart',

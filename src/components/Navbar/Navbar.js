@@ -16,8 +16,7 @@ export const Navbar = () => {
                     <li className={(pathname === '/AboutUs') ? "nav-link-container active" : "nav-link-container"}><span className='nav-link'><Link className='nav-link' to='/AboutUs'>About us</Link></span></li>
                 </ul>
                 <div className="navbar-text d-flex gap-4 justify-content-end">
-                    <Link to='/Cart'><img src={cart.length === 0 ? '/assets/cart.png' : '/assets/cartActive.png'}/></Link>
-                    <Link to='/Profile'><img src='/assets/user.png'/></Link>
+                    <Link to='/Cart'><img src={cart.length === 0 ? '/assets/cart.png' : '/assets/cartActive.png'} alt='cart'/></Link>
                 </div>
             </div>
         </div>

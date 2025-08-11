@@ -2,9 +2,9 @@ import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import ProductCardBox from '../../components/ProductCardBox/ProductCardBox.js';
+import { ProductCardBox } from '../../components/ProductCardBox/ProductCardBox.js';
 import { Navbar } from '../../components/Navbar/Navbar.js';
 import { PageButtons } from '../../components/PageButtons/PageButtons.js';
 
@@ -21,6 +21,7 @@ function Home () {
 
     useEffect(() => {
         filterProducts(params.text || '', state.type);
+        // eslint-disable-next-line
     }, [productsList, params.text, state.type]);
 
     const filterProducts = (searchText, filterType) => {
@@ -54,6 +55,7 @@ function Home () {
             ...prev,
             type: e.target.value
         }));
+        navigate(`/Search/1/${state.search}`);
     };
 
     const handleSearchSubmit = (e) => {
@@ -117,7 +119,7 @@ function Home () {
             
                 <div className="row" style={state.productsCurrent.length > 6 ? {display: 'block'} : {display: 'none'}}>
                     <div className="col-12 d-flex justify-content-center mb-5">
-                       <PageButtons count={ Math.ceil(state.productsCurrent.length * 1.0 / 6) }/>
+                       <PageButtons count={ Math.ceil(state.productsCurrent.length * 1.0 / 6) } active={Number(params.pageNum)}/>
                     </div>
                 </div>
             </div>

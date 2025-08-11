@@ -2,7 +2,8 @@ import './Product.css';
 import { Navbar } from '../../components/Navbar/Navbar.js';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ProductCardBox from '../../components/ProductCardBox/ProductCardBox.js';
+
+import { ProductCardBox } from '../../components/ProductCardBox/ProductCardBox.js';
 import { addToCart } from '../../actions';
 
 export const Product = () => {

@@ -1,14 +1,9 @@
-import './ProductCardBox.css'
-import ProductCard from '../ProductCard/ProductCard.js';
-import { v4 } from 'uuid';
+import { ProductCard } from '../ProductCard/ProductCard.js';
 
-const ProductCardBox = ({products}) => {
-
+export const ProductCardBox = ({products}) => {
     return (
         <div className='row g-5 align-items-stretch mb-5'>
-            {products.map(product => <ProductCard product={product} key={v4()}/>)}
+            {products.map(product => <ProductCard product={product} key={product.name.replaceAll(' ','_')}/>)}
         </div>
     )
 };
-
-export default ProductCardBox;
